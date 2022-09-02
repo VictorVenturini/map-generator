@@ -18,25 +18,25 @@ def createWorld():
         world.append(line)
     return world
 
-def insertDiagonalBiom(world):
+def insertDiagonalMarking(world):
     for i in range(SIZE):
         if i == 0:
             world[i][i] = random.choice([1,2,3,4,5])
         else:
             sorted_ = random.choice([1,2,3,4,5,6,7,8]) in [1,2,4,6]
             if sorted_:
-                numeber_sorted =  random.choice([1,2,3,4,5])
-                if numeber_sorted == world[i-1][i-1]:
+                number_sorted =  random.choice([1,2,3,4,5])
+                if number_sorted == world[i-1][i-1]:
                     option = [1,2,3,4,5]
-                    option.remove(numeber_sorted)
-                    newnumeber_sorted =  random.choice(option)
-                    world[i][i] = newnumeber_sorted
+                    option.remove(number_sorted)
+                    newnumber_sorted =  random.choice(option)
+                    world[i][i] = newnumber_sorted
                 else:
-                    world[i][i] = numeber_sorted
+                    world[i][i] = number_sorted
             else:
                 world[i][i] = world[i-1][i-1]
 
-def insertPositiveBiom(world, size, j):
+def insertBiom(world, size, j):
     for i in range(size - j):
         sorted_ = random.choice([1,2,3,4,5,6,7])
         sorted_1 = sorted_ in [1,2,3]
@@ -60,10 +60,10 @@ def insertPositiveBiom(world, size, j):
             world[i+j][i] = random.choice([1,2,3,4,5])
     j += 1
     if j != size:
-        insertPositiveBiom(world, size, j)
+        insertBiom(world, size, j)
 
 world = createWorld()
-insertDiagonalBiom(world)
+insertDiagonalMarking(world)
 j = 1
-insertPositiveBiom(world, SIZE, j)
+insertBiom(world, SIZE, j)
 printWorld(world)
